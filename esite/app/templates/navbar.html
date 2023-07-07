@@ -9,36 +9,38 @@
         <!-- Items in the Navbar -->
         <div class="collapse navbar-collapse" id="navbarScroll">
             <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll fs-4" style="--bs-scroll-height: 100px;">
+                <!-- Item -->
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" href="{% url 'app:home' %}">Home</a>
                 </li>
-                <!-- Drop down list -->
-                <li class="nav-item dropdown ">
-                    <a class="nav-link dropdown-toggle disabled" href="#" id="navbarScrollingDropdown" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        Products
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item nav-item dropdown " href="#">Another action</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
+                <!-- Item -->
+                <li class="nav-item">
+                    <a class="nav-link  active" aria-current="page"  href="{% url 'app:products' %}" aria-disabled="true">Products</a>
                 </li>
                 <!-- Item -->
                 <li class="nav-item">
                     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Contact Us</a>
                 </li>
             </ul>
+            <!-- Login Item -->
             <ul class="navbar-nav justify-content-end fs-4">
-
-                <li><span id="loginButton"  class="text-dark pointer"><img src="" alt=""><i
-                            class="bi bi-people-fill"></i>
-                        Login</span></li>
+                {% if user_session  %}
+                <li><a href="{% url 'app:logout_process' %}" id="logoutButton" class="text-dark pointer text-decoration-none">
+                    
+                    Welcome, {{user_session.first_name}} {{user_session.last_name}} 
+                    <i class="bi bi-box-arrow-right" title="Logout"></i>
+                </a></li>
+                        
+                        {% else %}
+                        <li><span id="loginButton" class="text-dark pointer">
+                            <img src="" alt="">
+                            <i class="bi bi-people-fill"></i>
+                            Login
+                        </span></li>
+                        {% endif %}
 
             </ul>
+            <!-- Search Item  -->
             <!-- <form class="d-flex">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>

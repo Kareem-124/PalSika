@@ -1,28 +1,34 @@
 <main>
     <div class="loginContainer">
-        <form action="" class="text-center">
+        <form action="{% url 'app:login_process' %}" method="post" class="text-center">
+            {% csrf_token %}
+            <!-- Add the 'X' button -->
             <div class="row justify-content-end ">
                 <div class="col-sm-1 ">
                     <span class="  fs-2 pointer close"><strong>&times;</strong></span>
                 </div>
                 
             </div>
+            <!-- Login Title -->
             <div class="row">
                 <h1 class="text-white">Login</h1>
             </div>
             <hr class="border border-1 border-warning">
+            <!-- Email Address Section -->
             <div class="row">
                 <div class="col-sm-12 mb-3">
-                    <label for="" class="form-label text-warning fs-3 ">User Name:</label>
-                    <input type="text" class="form-control">
+                    <label for="" class="form-label text-warning fs-3 ">Email Address:</label>
+                    <input type="email" name="email" class="form-control">
                 </div>
             </div>
+            <!-- Password Section -->
             <div class="row">
                 <div class="col-sm-12 mb-3">
                     <label for="" class="form-label text-warning fs-3 ">Password:</label>
-                    <input type="password" class="form-control">
+                    <input type="password" name="password" class="form-control">
                 </div>
             </div>
+            <!-- Login Submit Button Section -->
             <div class="row">
                 <div class="col-sm-12 mt-3 mb-3">
                     <button type="submit" class="btn btn-warning btn-lg "><strong>Login</strong></button>
@@ -30,9 +36,10 @@
             </div>
         </form>
         <hr class="border border-1 border-black">
+        <!-- Don't Have an Account Section -->
         <div class="row mb-3 justify-content-center">
             <div class="col-sm-12 text-center">
-                <a href="" class="text-decoration-none text-warning">Don't have account ?</a>
+                <a href="{% url 'app:registration' %}" class="text-decoration-none text-warning">Don't have account ?</a>
             </div>
         </div>
     </div>

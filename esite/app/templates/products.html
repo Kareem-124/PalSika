@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PalSika Products</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    
+
+    {% include 'navbar.html' %}
+    <div class="container  mb-3 p-3 shadow main-margin-top d-flex justify-content-center" style="background-color: rgb(255, 255, 255);">
+        <main class="mt-5">
+            {% if user_session %}
+            <!-- Add New Product Button -->
+            <div class="row mb-5 ">
+                <div class="col-sm-10  mx-auto">
+                    <div class="d-grid col-3 mx-auto">
+                        <a href="{% url 'app:new_product_page' %}"  class="btn btn-warning fs-5 fw-bold shadow-sm border border-3 border-dark">Add New Product</a>
+                    </div>
+                </div>
+            </div>
+            <hr class="border border-1 border-dark mb-5">
+            {% endif %}
+            <div class="row row-col-4 mb-5 gy-5 d-flex">
+                {% include 'product_obj_admin.html' %}
+                {% include 'product_obj_admin.html' %}
+                {% include 'product_obj_admin.html' %}
+                {% include 'product_obj_admin.html' %}
+
+                {% include 'product_obj_admin.html' %}
+                {% include 'product_obj_admin.html' %}
+
+        </main>
+    </div>
+    {% include 'footer.html' %}
+</body>
+<!-- Modal Section -->
+<div id="my_modal" class="my_modal">
+    <div class="loginFlex">
+        <div class="modal_content glass">
+            
+            <hr>
+            {% include 'login.html' %}
+            
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+    crossorigin="anonymous"></script>
+<script src="{% static 'Js/script.js' %}">
+</script>
+
+</html>

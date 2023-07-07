@@ -1,3 +1,10 @@
+:root{
+    --product-image-height:17rem;
+    --product-image-width:12rem;
+    --product-article-padding:2rem;
+    --main-margin-top:6rem;
+}
+
 .my_modal {
     display: none;
     /* by default hidden*/
@@ -10,6 +17,8 @@
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.247);
     transition: transform 500ms;
+    
+    
 
 
 
@@ -54,4 +63,18 @@
 .pointer:hover{
     cursor: pointer;
 
+}
+
+
+.product-image{
+    width: var(--product-image-width);
+    height: var(--product-image-height);
+    padding: var(--product-article-padding);
+}
+
+.product-article{
+    padding: var(--product-article-padding);
+}
+.main-margin-top{
+    margin-top: var(--main-margin-top);
 }
