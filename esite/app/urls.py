@@ -15,5 +15,6 @@ urlpatterns = [
     path('login_process', views.login_process, name='login_process'),                      
     path('logout_process', views.logout_process, name='logout_process'),                      
     path('new_product_process', views.new_product_process, name='new_product_process'),                      
+    path('delete_product_process/<int:product_id>', views.delete_product_process, name='delete_product_process'),                      
 
 ]

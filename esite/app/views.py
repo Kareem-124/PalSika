@@ -107,8 +107,12 @@ def logout_process(request):
 def new_product_process(request):
     if request.POST['product_qty'] == '' :
         product_qty = None
+    else:
+        product_qty = request.POST['product_qty']
     if request.POST['product_barcode'] == '' :
         product_barcode = None
+    else:
+        product_barcode = request.POST['product_barcode']
     product = Product.objects.create(product_name=request.POST['product_name'],
                                     product_category=request.POST['product_category'],
                                     product_qty=product_qty,
@@ -116,3 +120,11 @@ def new_product_process(request):
                                     product_desc=request.POST['product_desc'],
                                     )
     return redirect('/products')
+
+
+# Process: Delete
+
+def delete_product_process(request,product_id):
+    product = Product.objects.get(id=product_id)
+    product.delete()
+    return redirect ('/products')
