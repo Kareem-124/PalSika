@@ -5,7 +5,6 @@ import bcrypt
 
 # Create your views here.
 
-
 def check_session(request):
     if request.session.has_key('user_session_id') == True:
         user_session = User.objects.get(id=request.session['user_session_id'])
@@ -58,15 +57,31 @@ def new_product_page(request):
     }
     return render(request, 'new_product.html', context)
 
+# Page: Edit_product
+def edit_product_page(request,product_id):
+    product = Product.objects.get(id=product_id)
+    user_session = check_session(request)
+    context = {
+        'user_session': user_session,
+        'product' : product,
+    }
+    return render(request,'edit_product.html',context)
+
 # Process: Registration Process
 
 
 def reg_process(request):
+    errors = User.objects.reg_validation(request.POST)
+    if len(errors) > 0:
+        for key,value in errors.items():
+            messages.error(request,value)
+        return redirect('/registration')
     password = request.POST['password']
     ps_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
     User.objects.create(
         first_name=request.POST['first_name'], last_name=request.POST['last_name'], email=request.POST['email'], password=ps_hash
     )
+    messages.success(request,f"User {request.POST['first_name']} {request.POST['last_name']} Has Been Created Successfully")
     return redirect('/')
 
 # Process: Login
@@ -101,10 +116,8 @@ def logout_process(request):
     request.session.flush()
     return redirect('/')
 
-# Process: New Product
-
-
-def new_product_process(request):
+# Function: Check Quantity and Barcode
+def check_qty_barcode(request):
     if request.POST['product_qty'] == '' :
         product_qty = None
     else:
@@ -113,6 +126,11 @@ def new_product_process(request):
         product_barcode = None
     else:
         product_barcode = request.POST['product_barcode']
+    return product_qty,product_barcode
+
+# Process : Add New Product
+def new_product_process(request):
+    product_qty,product_barcode = check_qty_barcode(request)
     product = Product.objects.create(product_name=request.POST['product_name'],
                                     product_category=request.POST['product_category'],
                                     product_qty=product_qty,
@@ -128,3 +146,16 @@ def delete_product_process(request,product_id):
     product = Product.objects.get(id=product_id)
     product.delete()
     return redirect ('/products')
+
+# Process: Edit Product
+
+def edit_product_process(request, product_id):
+    product=Product.objects.get(id=product_id)
+    product_qty,product_barcode = check_qty_barcode(request)
+    product.product_name=request.POST['product_name']
+    product.product_category=request.POST['product_category']
+    product.product_qty=product_qty
+    product.product_barcode=product_barcode
+    product.product_desc=request.POST['product_desc']
+    product.save()
+    return redirect('/products')

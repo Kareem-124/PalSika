@@ -15,3 +15,6 @@ login.onclick = function () {
 span.onclick = function () {
     modal.style.display = "none";
 }
+
+
+//------------------------------------ alert auto close

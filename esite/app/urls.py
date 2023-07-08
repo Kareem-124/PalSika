@@ -8,6 +8,7 @@ urlpatterns = [
     path('registration', views.registration, name='registration'),
     path('products', views.products, name='products'),
     path('new_product_page', views.new_product_page, name='new_product_page'),                      
+    path('edit_product_page/<int:product_id>', views.edit_product_page, name='edit_product_page'),                      
 
 
     # Process Section
@@ -16,5 +17,6 @@ urlpatterns = [
     path('logout_process', views.logout_process, name='logout_process'),                      
     path('new_product_process', views.new_product_process, name='new_product_process'),                      
     path('delete_product_process/<int:product_id>', views.delete_product_process, name='delete_product_process'),                      
+    path('edit_product_process/<int:product_id>', views.edit_product_process, name='edit_product_process'),                      
 
 ]
