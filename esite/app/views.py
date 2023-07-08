@@ -40,8 +40,10 @@ def registration(request):
 def products(request):
     # Check if we a session is available
     user_session = check_session(request)
+    products = Product.objects.all()
     context = {
         'user_session': user_session,
+        'products' : products,
     }
     return render(request, 'products.html', context)
 

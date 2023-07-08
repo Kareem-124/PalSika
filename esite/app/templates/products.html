@@ -11,31 +11,35 @@
 </head>
 
 <body>
-    
+
 
     {% include 'navbar.html' %}
-    <div class="container  mb-3 p-3 shadow main-margin-top d-flex justify-content-center" style="background-color: rgb(255, 255, 255);">
+    <div class="container  mb-3 p-3 shadow main-margin-top d-flex justify-content-center"
+        style="background-color: rgb(255, 255, 255);">
         <main class="mt-5">
+            <!-- Check if Session exists -->
             {% if user_session %}
             <!-- Add New Product Button -->
             <div class="row mb-5 ">
                 <div class="col-sm-10  mx-auto">
                     <div class="d-grid col-3 mx-auto">
-                        <a href="{% url 'app:new_product_page' %}"  class="btn btn-warning fs-5 fw-bold shadow-sm border border-3 border-dark">Add New Product</a>
+                        <a href="{% url 'app:new_product_page' %}"
+                            class="btn btn-warning fs-5 fw-bold shadow-sm border border-3 border-dark">Add New
+                            Product</a>
                     </div>
                 </div>
             </div>
             <hr class="border border-1 border-dark mb-5">
             {% endif %}
-            <div class="row row-col-4 mb-5 gy-5 d-flex">
-                {% include 'product_obj_admin.html' %}
-                {% include 'product_obj_admin.html' %}
-                {% include 'product_obj_admin.html' %}
-                {% include 'product_obj_admin.html' %}
+            <div class="container">
+                <div class="row row-cols-4 gy-4 ">
+                    <!-- Display all products in the DB -->
+                    {% for product in products %}
+                    {% include 'product_obj_admin.html' %}
+                    {% endfor %}
+                </div>
 
-                {% include 'product_obj_admin.html' %}
-                {% include 'product_obj_admin.html' %}
-
+            </div>
         </main>
     </div>
     {% include 'footer.html' %}
@@ -44,10 +48,10 @@
 <div id="my_modal" class="my_modal">
     <div class="loginFlex">
         <div class="modal_content glass">
-            
+
             <hr>
             {% include 'login.html' %}
-            
+
         </div>
     </div>
 </div>
