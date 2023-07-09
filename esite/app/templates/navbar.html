@@ -11,15 +11,15 @@
             <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll fs-4" style="--bs-scroll-height: 100px;">
                 <!-- Item -->
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'app:home' %}">Home</a>
+                    <a class="nav-link active  {{selection.home}}" text-data="Home" aria-current="page" href="{% url 'app:home' %}">Home</a>
                 </li>
                 <!-- Item -->
                 <li class="nav-item">
-                    <a class="nav-link  active" aria-current="page"  href="{% url 'app:products' %}" aria-disabled="true">Products</a>
+                    <a class="nav-link  active {{selection.products}}" aria-current="page"  text-data="Products" href="{% url 'app:products' %}" aria-disabled="true">Products</a>
                 </li>
                 <!-- Item -->
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Contact Us</a>
+                    <a class="nav-link disabled {{selection.contact_us}}" href="#" tabindex="-1"  text-data="Contact Us" aria-disabled="true">Contact Us</a>
                 </li>
             </ul>
             <!-- Login Item -->

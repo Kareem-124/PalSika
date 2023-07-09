@@ -16,7 +16,7 @@
     {% if user_session %}
     <div class="container pb-2 mb-3 pt-2 shadow main-margin-top" style="background-color: rgb(255, 255, 255);">
         <h1 class="text-center mb-5">Edit Product </h1>
-        <form action="{% url 'app:edit_product_process' product_id=product.id %}" method="post">
+        <form action="{% url 'app:edit_product_process' product_id=product.id %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <!-- Product Name Section -->
             <div class="row mb-4 ">
@@ -24,7 +24,7 @@
                     <label for="" class="form-label"> Product Name:<span class="text-danger fs-5">*</span></label>
                 </div>
                 <div class="col-sm-5">
-                    <input type="text" name="product_name"  class="form-control" value="{{product.product_name}}">
+                    <input type="text" name="product_name" class="form-control" value="{{product.product_name}}">
                 </div>
             </div>
             <!-- Product Category Section -->
@@ -33,7 +33,8 @@
                     <label for="" class="form-label"> Product Category: <span class="text-danger fs-5">*</span> </label>
                 </div>
                 <div class="col-sm-5">
-                    <input type="text" name="product_category" class="form-control" value="{{product.product_category}}">
+                    <input type="text" name="product_category" class="form-control"
+                        value="{{product.product_category}}">
                 </div>
             </div>
             <!-- product_qty Section -->
@@ -51,7 +52,8 @@
                     <label for="" class="form-label"> Product Barcode:</label>
                 </div>
                 <div class="col-sm-5">
-                    <input type="number" name="product_barcode" class="form-control" value="{{product.product_barcode}}">
+                    <input type="number" name="product_barcode" class="form-control"
+                        value="{{product.product_barcode}}">
                 </div>
             </div>
             <!-- product_desc Section -->
@@ -61,6 +63,15 @@
                 </div>
                 <div class="col-sm-5">
                     <textarea name="product_desc" class="form-control" rows="5">{{product.product_desc}}</textarea>
+                </div>
+            </div>
+            <!-- Image Section -->
+            <div class="row mb-4">
+                <div class="col-sm-4 text-center fs-4 fw-bold">
+                    <label for="" class="form-label"> Upload Image:</label>
+                </div>
+                <div class="col-sm-5">
+                    <input type="file" name="product_image" class="form-control-file" value="{{product.product_image}}">
                 </div>
             </div>
             <!-- Edit Button -->

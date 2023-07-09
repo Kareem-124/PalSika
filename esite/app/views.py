@@ -6,6 +6,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 # Create your views here.
+def clear_selection():
+    # in the future to make this dynamic, receive the dictionary, then iterate it and change the values of the keys to ''
+    selection = {
+        'home' : '',
+        'products' : '',
+        'contact_us' : '',
+    }
+    return selection
 
 def check_session(request):
     if request.session.has_key('user_session_id') == True:
@@ -19,8 +27,12 @@ def check_session(request):
 def index(request):
     # Check if we a session is available
     user_session = check_session(request)
+    # Navbar Selection page to bold it
+    selection = clear_selection()
+    selection['home'] = "selected"
     context = {
         'user_session': user_session,
+        'selection' : selection,
     }
     return render(request, 'index.html', context)
 
@@ -30,8 +42,11 @@ def index(request):
 def registration(request):
     # Check if we a session is available
     user_session = check_session(request)
+    # Navbar Selection page to bold it
+    selection = clear_selection()
     context = {
         'user_session': user_session,
+        'selection' : selection,
     }
     return render(request, 'registration.html', context)
 
@@ -41,13 +56,15 @@ def registration(request):
 def products(request):
     # Check if we a session is available
     user_session = check_session(request)
+    # Navbar Selection page to bold it
+    selection = clear_selection()
+    selection['products'] = "selected"
+    # Get all Products from db
     products = Product.objects.all()
-    media_url=settings.MEDIA_URL
-    print(media_url)
     context = {
         'user_session': user_session,
         'products' : products,
-        'MEDIA_URL' : media_url
+        'selection' : selection,
     }
     return render(request, 'products.html', context)
 
@@ -57,18 +74,26 @@ def products(request):
 def new_product_page(request):
     # Check if we a session is available
     user_session = check_session(request)
+    # Navbar Selection page to bold it
+    selection = clear_selection()
+    selection['products'] = "selected"
     context = {
         'user_session': user_session,
+        'selection' : selection,
     }
     return render(request, 'new_product.html', context)
 
 # Page: Edit_product
 def edit_product_page(request,product_id):
     product = Product.objects.get(id=product_id)
+    # Navbar Selection page to bold it
+    selection = clear_selection()
+    selection['products'] = "selected"
     user_session = check_session(request)
     context = {
         'user_session': user_session,
         'product' : product,
+        'selection' : selection,
     }
     return render(request,'edit_product.html',context)
 
@@ -137,6 +162,7 @@ def check_qty_barcode(request):
 def new_product_process(request):
     uploaded_file = request.FILES['product_image']
     product_qty,product_barcode = check_qty_barcode(request)
+    print(uploaded_file)
     Product.objects.create(product_name=request.POST['product_name'],
                                     product_category=request.POST['product_category'],
                                     product_qty=product_qty,
@@ -165,5 +191,10 @@ def edit_product_process(request, product_id):
     product.product_qty=product_qty
     product.product_barcode=product_barcode
     product.product_desc=request.POST['product_desc']
-    product.save()
+    try:
+        
+        product.product_image=request.FILES['product_image']
+        product.save()
+    except:
+        product.save()
     return redirect('/products')

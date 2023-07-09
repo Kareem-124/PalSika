@@ -1,6 +1,6 @@
 :root {
-    --product-image-height: 17rem;
-    --product-image-width: 12rem;
+    --product-image-height: 23rem;
+    --product-image-width: 18rem;
     --product-article-padding: 2rem;
     --main-margin-top: 6rem;
     --title-height:4rem;
@@ -125,4 +125,30 @@
 
 .title-h{
 height: var(--title-height);
+}
+
+
+.scale:hover{
+    transition: 200ms;
+    transform: scale(1.25);
+    
+}
+.scale{
+    transition: 200ms;
+}
+.selected{
+    font-weight: bold;
+}
+.nav-item:hover{
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+a::before{
+    display: block;
+    content: attr(text-data);
+    font-weight: bold;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
 }

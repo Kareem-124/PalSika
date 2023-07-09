@@ -3,7 +3,7 @@
     <div class=" card d-flex align-items-center shadow position-relative mx-auto " style=" width: 18rem;">
         <!-- Image -->
         {% if product.product_image %}
-        <img src="{{product.product_image.url}}" class="card-img-top p-5 " alt="{{product.product_image}}">
+        <img src="{{product.product_image.url}}" class="card-img-top p-5 product-image " alt="{{product.product_image}}">
         <div class="card-body  w-100">
             <h4 class=" title-h" >{{product.product_name}}</h4>
             <p class="card-text overflow-auto scrollbar" id="style-6" style="height: 6rem;">{{product.product_desc}}</p>
@@ -20,14 +20,14 @@
         <div class="position-absolute  top-0 end-0 ">
             <div class="d-flex flex-column  ">
                 <!-- Delete Section -->
-                <div class="mb-6 fs-4">
+                <div class="mb-6 fs-4 scale">
                     <a href="{% url 'app:delete_product_process' product_id=product.id %}"><i
-                            class="bi bi-circle-fill text-danger position-absolute translate-middle fs-1"></i>
-                        <i class="bi bi-trash3-fill text-white position-absolute translate-middle"></i>
+                            class="bi bi-circle-fill  text-danger position-absolute translate-middle fs-1"></i>
+                        <i class="bi bi-trash3-fill text-white position-absolute translate-middle "></i>
                     </a>
                 </div>
                 <!-- Edit Section -->
-                <div class="fs-4">
+                <div class="fs-4 scale">
                     <a href="{% url 'app:edit_product_page' product_id=product.id %}">
                         <i class="bi bi-circle-fill text-warning position-absolute translate-middle fs-1"></i>
                         <i class="bi bi-pencil position-absolute translate-middle text-dark"></i>

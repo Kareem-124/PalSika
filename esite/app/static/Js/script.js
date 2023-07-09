@@ -18,3 +18,7 @@ span.onclick = function () {
 
 
 //------------------------------------ alert auto close
+function test(element){
+    element.style.fontWeight = "900"
+    console.log(element.clientWidth);
+}
