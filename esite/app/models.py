@@ -57,5 +57,6 @@ class Product(models.Model):
     product_qty = models.IntegerField(blank=True, null=True, default=1)
     product_barcode = models.IntegerField(blank=True, null=True)
     product_desc = models.TextField(default="No Description is Available")
+    product_image = models.ImageField(null=True, blank=True,upload_to='images')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

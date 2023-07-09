@@ -1,5 +1,10 @@
 from django.urls import path     
 from . import views
+import sys
+from django.conf import settings
+from django.conf.urls.static import static
+
+sys.path.append('../esite')
 
 app_name = 'app'
 urlpatterns = [
@@ -20,3 +25,5 @@ urlpatterns = [
     path('edit_product_process/<int:product_id>', views.edit_product_process, name='edit_product_process'),                      
 
 ]
+urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+

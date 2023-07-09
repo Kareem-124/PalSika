@@ -16,7 +16,7 @@
     {% if user_session %}
     <div class="container pb-2 mb-3 pt-2 shadow main-margin-top" style="background-color: rgb(255, 255, 255);">
         <h1 class="text-center mb-5">Add New Product </h1>
-        <form action="{% url 'app:new_product_process' %}" method="post">
+        <form action="{% url 'app:new_product_process' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <!-- Product Name Section -->
             <div class="row mb-4 ">
@@ -61,6 +61,15 @@
                 </div>
                 <div class="col-sm-5">
                     <textarea name="product_desc" class="form-control" rows="5">Description part</textarea>
+                </div>
+            </div>
+            <!-- Image Section -->
+            <div class="row mb-4">
+                <div class="col-sm-4 text-center fs-4 fw-bold">
+                    <label for="" class="form-label"> Upload Image:</label>
+                </div>
+                <div class="col-sm-5">
+                    <input type="file" class="form-control-file">
                 </div>
             </div>
             <!-- Registration Button -->

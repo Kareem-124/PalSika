@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from app.models import *
 from django.contrib import messages
 import bcrypt
+from django.conf import settings
+from django.conf.urls.static import static
 
 # Create your views here.
 
@@ -40,9 +42,12 @@ def products(request):
     # Check if we a session is available
     user_session = check_session(request)
     products = Product.objects.all()
+    media_url=settings.MEDIA_URL
+    print(media_url)
     context = {
         'user_session': user_session,
         'products' : products,
+        'MEDIA_URL' : media_url
     }
     return render(request, 'products.html', context)
 
