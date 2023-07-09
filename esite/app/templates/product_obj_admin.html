@@ -3,7 +3,7 @@
     <div class=" card d-flex align-items-center shadow position-relative mx-auto " style=" width: 18rem;">
         <!-- Image -->
         {% if product.product_image %}
-        <img src="{{MEDIA_URL}}{{product.product_image}}" class="card-img-top p-5 " alt="{{product.product_image}}">
+        <img src="{{product.product_image.url}}" class="card-img-top p-5 " alt="{{product.product_image}}">
         <div class="card-body  w-100">
             <h4 class=" title-h" >{{product.product_name}}</h4>
             <p class="card-text overflow-auto scrollbar" id="style-6" style="height: 6rem;">{{product.product_desc}}</p>

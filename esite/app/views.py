@@ -135,12 +135,15 @@ def check_qty_barcode(request):
 
 # Process : Add New Product
 def new_product_process(request):
+    uploaded_file = request.FILES['product_image']
     product_qty,product_barcode = check_qty_barcode(request)
-    product = Product.objects.create(product_name=request.POST['product_name'],
+    Product.objects.create(product_name=request.POST['product_name'],
                                     product_category=request.POST['product_category'],
                                     product_qty=product_qty,
                                     product_barcode=product_barcode,
                                     product_desc=request.POST['product_desc'],
+                                    product_image = uploaded_file,
+                                    
                                     )
     return redirect('/products')
 
