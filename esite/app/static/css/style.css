@@ -4,6 +4,7 @@
     --product-article-padding: 2rem;
     --main-margin-top: 6rem;
     --title-height:4rem;
+    --modal-margin-top:10rem;
 }
 
 .my_modal {
@@ -151,4 +152,20 @@ a::before{
     height: 0;
     overflow: hidden;
     visibility: hidden;
+}
+
+.btn-circle{
+    background-color: #f5f5f500;
+    border: 0px solid white;
+}
+
+.cat_icon:hover{
+    color: #F90;
+}
+.cat_icon{
+    color: #FFC107;
+}
+
+.mt-d{
+    margin-top:var(--modal-margin-top) ;
 }

@@ -15,15 +15,7 @@
     <div class="container pb-2 mb-3 pt-2 shadow main-margin-top" style="background-color: rgb(255, 255, 255);">
         <h1 class="text-center mb-5">Registration </h1>
         <!-- Error Validation Messages -->
-        {% if messages %}
-        
-            {% for message in messages %}
-        <div class="alert alert-warning alert-dismissible fade show" id = "alert" role="alert">
-            <strong>Error:</strong> {{message}}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-            {% endfor %}
-        {% endif %}
+{% include 'messages.html' %}
 
         <form action="{% url 'app:reg_process' %}" method="post">
             {% csrf_token %}

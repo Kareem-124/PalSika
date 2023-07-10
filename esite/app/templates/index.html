@@ -35,16 +35,7 @@
     <h2 class="text-center">Newest Products</h2>
     <div class="container pb-2 mb-3 pt-2 shadow" style="background-color: rgb(255, 255, 255);">
         <!-- Validation Messages -->
-        {% if messages %}
-        {% for message in messages %}
-            {% if message.tags == 'success' %}
-        <div class="alert alert-success alert-dismissible fade show" id = "alert" role="alert">
-            <strong>Success:</strong> {{message}}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-            {% endif %}
-            {% endfor %}
-        {% endif %}
+        {% include 'messages.html' %}
         <!-- Modal Section -->
         <div id="my_modal" class="my_modal">
             <div class="loginFlex">

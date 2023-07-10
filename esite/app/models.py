@@ -38,6 +38,23 @@ class Validation(models.Manager):
         if not PASSWORD_REGEX.match(data['password']):
             error['password_regex'] = "Password must have 'Lower Case' / 'Upper Case' / 'Number' / 'Symbol (@ # $ % ^ & + = _ -)'"
         return error
+    
+    def cat_validation(self,data):
+        error = {}
+        if len(data['cat_name']) <= 0 :
+            error['cat_name'] = "Please Enter a Name for the Category"
+        return error
+
+    def product_validation(self,data,image):
+        error = {}
+        if len(data['product_name']) <= 0:
+            error['product_name'] = "Please Enter a Name for the Product"
+        if not('product_image' in image) :
+            error['no_image']="Please Upload an Image for the Product"
+        if data['product_category'] == 'Please Select a Category':
+            error['Please Select a Category'] = "Please Select a Category"
+        return error
+
 
 
 class User(models.Model):
@@ -51,12 +68,26 @@ class User(models.Model):
     objects = Validation()
 
 
+class Category(models.Model):
+    cat_name = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    # product_category
+    objects = Validation()
+
 class Product(models.Model):
     product_name = models.CharField(max_length=255)
-    product_category = models.CharField(max_length=255)
     product_qty = models.IntegerField(blank=True, null=True, default=1)
     product_barcode = models.IntegerField(blank=True, null=True)
     product_desc = models.TextField(default="No Description is Available")
     product_image = models.ImageField(null=True, blank=True,upload_to='images')
+    categories = models.ForeignKey(Category,related_name='product_category', on_delete=models.CASCADE, default="1")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    objects =Validation()
+
+# class Category(models.Model):
+#     cat_name = models.CharField(max_length=255)
+#     products = models.ForeignKey(Product,related_name='product_category', on_delete=models.CASCADE)
+#     created_at = models.DateTimeField(auto_now_add=True)
+#     updated_at = models.DateTimeField(auto_now=True)

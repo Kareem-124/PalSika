@@ -77,9 +77,12 @@ def new_product_page(request):
     # Navbar Selection page to bold it
     selection = clear_selection()
     selection['products'] = "selected"
+    # Get all categories
+    categories = Category.objects.all()
     context = {
         'user_session': user_session,
         'selection' : selection,
+        'categories' : categories,
     }
     return render(request, 'new_product.html', context)
 
@@ -160,12 +163,17 @@ def check_qty_barcode(request):
 
 # Process : Add New Product
 def new_product_process(request):
+    errors= Product.objects.product_validation(request.POST,request.FILES)
+    if len(errors)>0:
+        for key,value in errors.items():
+            messages.error(request,value)
+        return redirect ('/new_product_page')
+    category = Category.objects.get(id=(request.POST['product_category']))
     uploaded_file = request.FILES['product_image']
     product_qty,product_barcode = check_qty_barcode(request)
-    print(uploaded_file)
     Product.objects.create(product_name=request.POST['product_name'],
-                                    product_category=request.POST['product_category'],
-                                    product_qty=product_qty,
+                                    categories=category,
+                                    product_qty=product_qty,    
                                     product_barcode=product_barcode,
                                     product_desc=request.POST['product_desc'],
                                     product_image = uploaded_file,
@@ -198,3 +206,16 @@ def edit_product_process(request, product_id):
     except:
         product.save()
     return redirect('/products')
+
+# Process : Add New Category
+def new_cat_process(request):
+    error = Category.objects.cat_validation(request.POST)
+    if len(error) > 0:
+        for key,value in error.items():
+            messages.error(request,value)
+            return redirect('/new_product.html')
+    
+    Category.objects.create(cat_name = request.POST['cat_name'])
+    category = Category.objects.all().last
+    messages.success(request,f"You added {category} Successfully")
+    return redirect('/new_product.html')

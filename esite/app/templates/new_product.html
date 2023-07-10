@@ -16,6 +16,10 @@
     {% if user_session %}
     <div class="container pb-2 mb-3 pt-2 shadow main-margin-top" style="background-color: rgb(255, 255, 255);">
         <h1 class="text-center mb-5">Add New Product </h1>
+        <!-- Category Modal -->
+        {% include 'cat_modal.html' %}
+        <!-- Validation Messages -->
+        {% include 'messages.html' %}
         <form action="{% url 'app:new_product_process' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <!-- Product Name Section -->
@@ -32,8 +36,18 @@
                 <div class="col-sm-4 text-center fs-4 fw-bold">
                     <label for="" class="form-label"> Product Category: <span class="text-danger fs-5">*</span> </label>
                 </div>
-                <div class="col-sm-5">
-                    <input type="text" name="product_category" class="form-control">
+                <div class="col-sm-3 d-flex align-items-center">
+                    <select class="form-select" name="product_category" id="">
+                        <option selected>Please Select a Category</option>
+                        {% for cat in categories %}
+                        <option value="{{cat.id}}" >{{cat.cat_name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-sm-1 ">
+                    <button type="button" class="btn-circle " data-bs-toggle="modal" data-bs-target="#cat_modal"><i
+                            class="bi bi-plus-lg fs-2 fw-bold cat_icon "></i></button>
+
                 </div>
             </div>
             <!-- product_qty Section -->
@@ -66,10 +80,10 @@
             <!-- Image Section -->
             <div class="row mb-4">
                 <div class="col-sm-4 text-center fs-4 fw-bold">
-                    <label for="" class="form-label"> Upload Image:</label>
+                    <label for="" class="form-label"> Upload Image: <span class="text-danger fs-5">*</span></label>
                 </div>
                 <div class="col-sm-5">
-                    <input type="file" name="product_image" class="form-control-file">
+                    <input type="file" name="product_image" value="no_image" class="form-control-file">
                 </div>
             </div>
             <!-- Registration Button -->
