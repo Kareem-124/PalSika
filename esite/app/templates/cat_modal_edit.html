@@ -9,7 +9,8 @@
             <div class="modal-body">
                 <!-- Body Section of the Modal -->
                 <form action="{% url 'app:new_cat_process' %}" method="post">
-                    <input type="hidden" name="page_source" value="add_product_page">
+                    <input type="hidden" name="page_source" value="edit_product_page">
+                    <input type="hidden" name="product_id" value="{{product.id}}">
                     {% csrf_token %}
                     <div class="row">
                         <!-- Label Section -->

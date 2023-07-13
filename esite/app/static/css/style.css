@@ -169,3 +169,25 @@ a::before{
 .mt-d{
     margin-top:var(--modal-margin-top) ;
 }
+
+.embed-responsive {
+    position: relative;
+}
+.bgTransparant{
+    z-index: 1;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.244);
+
+    width: 100%;
+    height: 30rem;
+}
+.textTransparant {
+    position: absolute;
+    top: 10rem;
+    right: 35rem;
+    background-color: rgba(255, 255, 255, 0);
+    color: white;
+    z-index: 99;
+    font-size: 5rem;
+    text-shadow: 1px 1px 2px red, 0 0 1em rgb(246, 255, 0), 0 0 0.2em rgb(255, 179, 0);
+}
