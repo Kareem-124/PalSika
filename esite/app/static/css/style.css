@@ -187,7 +187,7 @@ a::before{
     right: 35rem;
     background-color: rgba(255, 255, 255, 0);
     color: white;
-    z-index: 99;
+    z-index: 1;
     font-size: 5rem;
     text-shadow: 1px 1px 2px red, 0 0 1em rgb(246, 255, 0), 0 0 0.2em rgb(255, 179, 0);
 }

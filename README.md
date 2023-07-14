@@ -67,8 +67,4 @@ For Full Resolution
 -	Add “**Archived Tap**” Page inside the “**Orders Page**” which will display all records of the archived orders **(read-only)** with no delete or edit. 
 
 
-### Bugs To Fix
--	Products page display does not display the products for smaller screens(e.g tablets/smartphones)
--	When a user is creating a new product/edits a product and filled some information in the taps then the user decides to create a new category, after creation the user will be sent back to the new product/edit product he was in but all the changes he made are removed (the data should be kept to let the user continue from where he was, not starting all over).
--	Footer: some parts need to have text alignment.
 
