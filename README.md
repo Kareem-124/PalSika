@@ -1,7 +1,7 @@
 # PalSika
 Project Proposal: PalSika
 
-##Abstract
+## Abstract
 This project aims to create a website for PalSika company which focuses on marketing and distributing Sika’s construction material products at the West-Bank, Palestine. The project will provide PalSika with a website that focuses on delivering two main points, helping PalSika to manage and present their products, and allow the customer to reach to PalSika available products and find all the required information about them before they make an order.
 
 Requirements
@@ -19,7 +19,7 @@ Requirements
 
 
 
-##Wireframe
+## Wireframe
 
 
 
@@ -51,8 +51,8 @@ For Full Resolution
 
 
 
-##Future Work
-###Add new Features
+## Future Work
+### Add new Features
 -	When creating a new user there will be two types (Normal User / Admin User).
 -	Adding a search bar on the products page.
 -	Adding a filter drop-down menu to show products according to their categories.
@@ -67,7 +67,7 @@ For Full Resolution
 -	Add “Archived Tap” Page inside the “Orders Page” which will display all records of the archived orders (read-only) with no delete or edit. 
 
 
-###Bugs To Fix
+### Bugs To Fix
 -	Products page display does not display the products for smaller screens(e.g tablets/smartphones)
 -	When a user is creating a new product/edits a product and filled some information in the taps then the user decides to create a new category, after creation the user will be sent back to the new product/edit product he was in but all the changes he made are removed (the data should be kept to let the user continue from where he was, not starting all over).
 -	Footer: some parts need to have text alignment.
